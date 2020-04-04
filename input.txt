@@ -1,0 +1,22 @@
+ADD_CHILD Tritha athir Male
+ADD_CHILD Ahit Aria Male
+GET_RELATIONSHIP Lavnya Maternal-Aunt
+GET_RELATIONSHIP Aria Siblings
+GET_RELATIONSHIP Vila Paternal-Uncle
+GET_RELATIONSHIP Yodhan Maternal-Uncle
+GET_RELATIONSHIP Yodhan Maternal-Aunt
+GET_RELATIONSHIP Chika Paternal-Aunt
+GET_RELATIONSHIP Vich Sister-In-Law
+GET_RELATIONSHIP Jaya Brother-In-Law
+GET_RELATIONSHIP Lika Brother-In-Law
+GET_RELATIONSHIP Tritha Brother-In-Law
+GET_RELATIONSHIP Lika Sister-In-Law
+GET_RELATIONSHIP Arit Son
+GET_RELATIONSHIP Arit Daughter
+GET_RELATIONSHIP Asva Siblings
+ADD_CHILD Satya Yaya Female
+GET_RELATIONSHIP Satvy Sister-In-Law
+ADD_CHILD Asva Vani Female
+GET_RELATIONSHIP Vasa Siblings
+ADD_CHILD Chitra Aria Female
+GET_RELATIONSHIP Aria Paternal-Aunt
