@@ -12,7 +12,7 @@ public class BrotherInLaw implements Relationship {
 
 	@Override
 	public String of(Member person) {
-		List<String> brotherInLaw = new ArrayList<String>();
+		List<String> brotherInLaw = new ArrayList<>();
 
 		// Add husbands of siblings
 		if(person.getMother() != null) {
