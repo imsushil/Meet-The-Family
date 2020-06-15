@@ -15,7 +15,7 @@ public class FamilyTest {
 		family = new Family();
 	}
 	
-	private void init() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	private void init() throws NoSuchFieldException, IllegalAccessException {
 		String name = "Anga";
 		String gender = "Female";
 		family.addFamilyHead(name, gender);
@@ -26,7 +26,7 @@ public class FamilyTest {
 	}
 	
 	@Test
-	public void addFamilyHeadTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void addFamilyHeadTest() throws NoSuchFieldException, IllegalAccessException {
 		String name = "Anga";
 		String gender = "Female";
 		family.addFamilyHead(name, gender);
@@ -38,7 +38,7 @@ public class FamilyTest {
 	}
 	
 	@Test
-	public void searchMemberTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void searchMemberTest() throws NoSuchFieldException, IllegalAccessException {
 		init();
 		String name = "Ram";
 		String gender = "Male";

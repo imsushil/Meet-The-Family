@@ -1,18 +1,15 @@
 package geektrust.family.commands;
 
-import static geektrust.family.pojo.Constants.CHILD_ADDITION_FAILED;
-import static geektrust.family.pojo.Constants.CHILD_ADDITION_SUCCEEDED;
-import static geektrust.family.pojo.Constants.PERSON_NOT_FOUND;
-
-import java.util.Optional;
-
+import geektrust.family.commands.impl.AddChild;
+import geektrust.family.pojo.Family;
+import geektrust.family.pojo.Member;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import geektrust.family.commands.commandsImpl.AddChild;
-import geektrust.family.pojo.Family;
-import geektrust.family.pojo.Member;
+import java.util.Optional;
+
+import static geektrust.family.pojo.Constants.*;
 
 public class AddChildTest {
 	private Family family;

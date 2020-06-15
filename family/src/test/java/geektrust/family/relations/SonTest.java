@@ -1,31 +1,30 @@
 package geektrust.family.relations;
 
-import static geektrust.family.pojo.Constants.NONE;
+import geektrust.family.QueryProcessor;
+import geektrust.family.pojo.Family;
+import geektrust.family.pojo.Member;
+import geektrust.family.relations.impl.Son;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static geektrust.family.pojo.Constants.NONE;
 
-import geektrust.family.QueryProcessor;
-import geektrust.family.pojo.Family;
-import geektrust.family.pojo.Member;
-import geektrust.family.relations.relationsImpl.Son;
 
 public class SonTest {
 	private Family family;
-	private QueryProcessor queryProcessor;
-	private Son son; 
+	private Son son;
 	
 	@Before
 	public void setUp() throws IOException{
 		family = new Family();
-		queryProcessor = new QueryProcessor();
+		QueryProcessor queryProcessor = new QueryProcessor();
 		queryProcessor.processInitCommand(family);
 		son = new Son();
 	}

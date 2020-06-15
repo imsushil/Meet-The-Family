@@ -1,4 +1,4 @@
-package geektrust.family.relations.relationsImpl;
+package geektrust.family.relations.impl;
 
 import java.util.ArrayList;
 import java.util.List;

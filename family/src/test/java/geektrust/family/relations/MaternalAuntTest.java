@@ -15,17 +15,16 @@ import org.junit.Test;
 import geektrust.family.QueryProcessor;
 import geektrust.family.pojo.Family;
 import geektrust.family.pojo.Member;
-import geektrust.family.relations.relationsImpl.MaternalAunt;
+import geektrust.family.relations.impl.MaternalAunt;
 
 public class MaternalAuntTest {
 	private Family family;
-	private QueryProcessor queryProcessor;
 	private MaternalAunt maternalAunt; 
 	
 	@Before
 	public void setUp() throws IOException{
 		family = new Family();
-		queryProcessor = new QueryProcessor();
+		QueryProcessor queryProcessor = new QueryProcessor();
 		queryProcessor.processInitCommand(family);
 		maternalAunt = new MaternalAunt();
 	}

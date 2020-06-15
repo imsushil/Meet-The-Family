@@ -1,19 +1,14 @@
 package geektrust.family;
 
-import static geektrust.family.pojo.Constants.INIT_FILE_PATH;
-import static geektrust.family.pojo.Constants.INVALID_COMMAND;
+import geektrust.family.commands.CommandsMap;
+import geektrust.family.pojo.Family;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import geektrust.family.commands.Command;
-import geektrust.family.commands.CommandsMap;
-import geektrust.family.exceptions.InvalidCommandException;
-import geektrust.family.pojo.Constants;
-import geektrust.family.pojo.Family;
-import geektrust.family.relations.RelationshipMap;
+import static geektrust.family.pojo.Constants.INIT_FILE_PATH;
 
 /**
  * QueryHandler class handles all the operations related to family tree. It
@@ -26,11 +21,6 @@ import geektrust.family.relations.RelationshipMap;
  */
 public class QueryProcessor {
 	
-	public QueryProcessor() {
-		RelationshipMap.init();
-		CommandsMap.init();
-	}
-	
 	/**
 	 * @param family
 	 * @param command
@@ -41,12 +31,7 @@ public class QueryProcessor {
 	 */
 	public String processInputCommand(String command, Family family) {
 		String[] commandParams = command.split(" ");
-		if(!CommandsMap.contains(commandParams[0])) {
-			return INVALID_COMMAND;
-		}
-		
-		Command commandImpl = CommandsMap.get(commandParams[0]);
-		return commandImpl.execute(commandParams, family);
+		return CommandsMap.get(commandParams[0]).execute(commandParams, family);
 	}
 	
 	/**
@@ -59,12 +44,7 @@ public class QueryProcessor {
 			String command;
 			while((command = br.readLine()) != null) {
 				String[] commandParams = command.split(" ");
-				if(!CommandsMap.contains(commandParams[0])) {
-					throw new InvalidCommandException(INVALID_COMMAND);
-				}
-				
-				Command commandImpl = CommandsMap.get(commandParams[0]);
-				commandImpl.execute(commandParams, family);
+				CommandsMap.get(commandParams[0]).execute(commandParams, family);
 			}
 		}
 	}

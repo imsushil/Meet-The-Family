@@ -1,4 +1,4 @@
-package geektrust.family.commands.commandsImpl;
+package geektrust.family.commands.impl;
 
 import static geektrust.family.pojo.Constants.FAMILY_HEAD_ADDED;
 

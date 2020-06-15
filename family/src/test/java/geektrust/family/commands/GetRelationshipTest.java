@@ -12,18 +12,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import geektrust.family.QueryProcessor;
-import geektrust.family.commands.commandsImpl.GetRelationship;
+import geektrust.family.commands.impl.GetRelationship;
 import geektrust.family.pojo.Family;
 
 public class GetRelationshipTest {
 	private Family family;
 	private GetRelationship getRelationship;
-	private QueryProcessor queryProcessor;
-	
+
 	@Before
 	public void getRelationship() throws IOException {
 		family = new Family();
-		queryProcessor = new QueryProcessor();
+		QueryProcessor queryProcessor = new QueryProcessor();
 		queryProcessor.processInitCommand(family);
 		getRelationship = new GetRelationship();
 	}
@@ -33,6 +32,7 @@ public class GetRelationshipTest {
 		String command = "GET_RELATIONSHIP Anga Son";
 		
 		String result = getRelationship.execute(command.split(" "), family);
+		System.out.println(result);
 		List<String> sons = Arrays.asList(result.split(" "));
 		Assert.assertThat(sons, CoreMatchers.hasItems("Ish", "Chit", "Vich", "Aras"));
 	}
@@ -70,7 +70,7 @@ public class GetRelationshipTest {
 		List<String> siblings = Arrays.asList(result.split(" "));
 		Assert.assertThat(siblings, CoreMatchers.hasItems("Vyas", "Atya"));
 	}
-	
+
 	@Test
 	public void findSiblingsNegativeTest() {
 		String command = "GET_RELATIONSHIP Yodhan Siblings";

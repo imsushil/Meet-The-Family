@@ -1,19 +1,20 @@
 package geektrust.family.commands;
 
-import static geektrust.family.pojo.Constants.ADD_CHILD;
-import static geektrust.family.pojo.Constants.ADD_FAMILY_HEAD;
-import static geektrust.family.pojo.Constants.ADD_SPOUSE;
-import static geektrust.family.pojo.Constants.GET_RELATIONSHIP;
+import geektrust.family.commands.impl.AddChild;
+import geektrust.family.commands.impl.AddFamilyHead;
+import geektrust.family.commands.impl.AddSpouse;
+import geektrust.family.commands.impl.GetRelationship;
+import geektrust.family.exceptions.InvalidCommandException;
 
 import java.util.HashMap;
+import java.util.Map;
 
-import geektrust.family.commands.commandsImpl.AddChild;
-import geektrust.family.commands.commandsImpl.AddFamilyHead;
-import geektrust.family.commands.commandsImpl.AddSpouse;
-import geektrust.family.commands.commandsImpl.GetRelationship;
+import static geektrust.family.pojo.Constants.*;
 
 public class CommandsMap {
-	private static HashMap<String, Command> commands = new HashMap<>();
+	private static Map<String, Command> commands = new HashMap<>();
+	
+	private CommandsMap() {}
 	
 	public static void init() {
 		commands.put(ADD_CHILD, new AddChild());
@@ -23,10 +24,14 @@ public class CommandsMap {
 	}
 	
 	public static Command get(String command) {
+		if(commands.isEmpty()) {
+			init();
+		}
+		if(!commands.containsKey(command)) {
+			throw new InvalidCommandException(INVALID_COMMAND);
+		}
+		
 		return commands.get(command);
 	}
-	
-	public static boolean contains(String command) {
-		return commands.containsKey(command);
-	}
+
 }

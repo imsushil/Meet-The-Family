@@ -1,14 +1,13 @@
 package geektrust.family.commands;
 
-import java.util.Optional;
-
+import geektrust.family.commands.impl.AddFamilyHead;
+import geektrust.family.pojo.Family;
+import geektrust.family.pojo.Member;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import geektrust.family.commands.commandsImpl.AddFamilyHead;
-import geektrust.family.pojo.Family;
-import geektrust.family.pojo.Member;
+import java.util.Optional;
 
 public class AddFamilyHeadTest {
 	private Family family;

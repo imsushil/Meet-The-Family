@@ -1,4 +1,4 @@
-package geektrust.family.relations.relationsImpl;
+package geektrust.family.relations.impl;
 
 import static geektrust.family.pojo.Constants.NONE;
 
@@ -15,8 +15,8 @@ public class MaternalUncle implements Relationship {
 		if(person.getMother().getMother() == null) return NONE;
 		
 		String uncles = person.getMother().getMother().getChildren().stream()
-				.filter(e -> e.isMale())
-				.map(e -> e.getName())
+				.filter(Member::isMale)
+				.map(Member::getName)
 				.collect(Collectors.joining(" "));
 		return uncles.isEmpty() ? NONE : uncles;
 	}

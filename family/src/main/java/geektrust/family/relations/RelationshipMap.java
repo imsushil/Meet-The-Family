@@ -1,29 +1,16 @@
 package geektrust.family.relations;
 
-import static geektrust.family.pojo.Constants.BROTHER_IN_LAW;
-import static geektrust.family.pojo.Constants.DAUGHTER;
-import static geektrust.family.pojo.Constants.MATERNAL_AUNT;
-import static geektrust.family.pojo.Constants.MATERNAL_UNCLE;
-import static geektrust.family.pojo.Constants.PATERNAL_AUNT;
-import static geektrust.family.pojo.Constants.PATERNAL_UNCLE;
-import static geektrust.family.pojo.Constants.SIBLING;
-import static geektrust.family.pojo.Constants.SISTER_IN_LAW;
-import static geektrust.family.pojo.Constants.SON;
+import geektrust.family.relations.impl.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
-import geektrust.family.relations.relationsImpl.BrotherInLaw;
-import geektrust.family.relations.relationsImpl.Daughter;
-import geektrust.family.relations.relationsImpl.MaternalAunt;
-import geektrust.family.relations.relationsImpl.MaternalUncle;
-import geektrust.family.relations.relationsImpl.PaternalAunt;
-import geektrust.family.relations.relationsImpl.PaternalUncle;
-import geektrust.family.relations.relationsImpl.Siblings;
-import geektrust.family.relations.relationsImpl.SisterInLaw;
-import geektrust.family.relations.relationsImpl.Son;
+import static geektrust.family.pojo.Constants.*;
 
 public class RelationshipMap {
-	static private HashMap<String, Relationship> relations = new HashMap<>();
+	private static Map<String, Relationship> relations = new HashMap<>();
+	
+	private RelationshipMap() {}
 	
 	public static void init() {
 		relations.put(SIBLING, new Siblings());
@@ -38,6 +25,9 @@ public class RelationshipMap {
 	}
 	
 	public static Relationship get(String relationship){
+		if(relations.isEmpty()) {
+			init();
+		}
 		return relations.get(relationship);
 	}
 	

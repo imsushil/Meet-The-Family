@@ -1,38 +1,38 @@
 package geektrust.family.pojo;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
+import geektrust.family.QueryProcessor;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import geektrust.family.QueryProcessor;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import static geektrust.family.pojo.Constants.PERSON_NOT_FOUND;
 
 public class MemberTest {
 	private Family family;
-	private QueryProcessor queryProcessor;
 	
 	@Before
 	public void setUp() throws IOException{
 		family = new Family();
-		queryProcessor = new QueryProcessor();
+		QueryProcessor queryProcessor = new QueryProcessor();
 		queryProcessor.processInitCommand(family);
 	}
 	
 	@Test
-	public void addChildTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void addChildTest() {
 		String name = "Ram";
 		String gender = "Male";
 		Optional<Member> angaOpt = family.searchMemberUtil("Anga");
-		Member anga = angaOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member anga = angaOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		anga.addChild(name, gender);
 		
 		Optional<Member> ramOpt = family.searchMemberUtil(name);
-		Member ram = ramOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member ram = ramOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		
 		boolean result = ram.getName().equalsIgnoreCase(name);
 		result = result && ram.getGender().equalsIgnoreCase(gender);
@@ -40,33 +40,22 @@ public class MemberTest {
 	}
 	
 	@Test
-	public void findSiblingsTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		String name = "Chit";
-		
-		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
-		
-		List<String> siblings = member.siblings();
-		Assert.assertThat(siblings, CoreMatchers.hasItems("Ish", "Vich", "Aras"));
-	}
-	
-	@Test
-	public void findSistersTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void findSistersTest(){
 		String name = "Vritha";
 		
 		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		
 		List<String> sisters = member.sisters();
 		Assert.assertThat(sisters, CoreMatchers.hasItems("Dritha", "Tritha"));
 	}
 	
 	@Test
-	public void findBrothersTest() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	public void findBrothersTest() {
 		String name = "Satya";
 		
 		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		
 		List<String> brothers = member.brothers();
 		Assert.assertThat(brothers, CoreMatchers.hasItems("Ish", "Vich", "Aras", "Chit"));
@@ -79,11 +68,11 @@ public class MemberTest {
 		String gender = "Male";
 		
 		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		
 		member.addSpouse(spouseName, gender);
 		memberOpt = family.searchMemberUtil(spouseName);
-		member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		
 		boolean result = member.getName().equalsIgnoreCase(spouseName);
 		result = result && member.getGender().equalsIgnoreCase(gender);
@@ -95,7 +84,7 @@ public class MemberTest {
 		String name = "Vila";
 		String relationship = "Paternal-Aunt";
 		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		
 		String relatives = member.getRelatives(relationship);
 		List<String> relativesList = Arrays.asList(relatives.split(" "));
@@ -106,7 +95,7 @@ public class MemberTest {
 	public void getUnmodifiableChildrenTest() {
 		String name = "Anga";
 		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		member.getChildren().add(new Member("Yash", "Male"));
 	}
 	
@@ -114,7 +103,7 @@ public class MemberTest {
 	public void isMemberMaleTest() {
 		String name = "Ish";
 		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		Assert.assertTrue(member.isMale());
 	}
 	
@@ -122,7 +111,7 @@ public class MemberTest {
 	public void isMemberFemaleTest() {
 		String name = "Satya";
 		Optional<Member> memberOpt = family.searchMemberUtil(name);
-		Member member = memberOpt.orElseThrow(() -> new RuntimeException("Member not found."));
+		Member member = memberOpt.orElseThrow(() -> new RuntimeException(PERSON_NOT_FOUND));
 		Assert.assertTrue(member.isFemale());
 	}
 }

@@ -1,6 +1,8 @@
 package geektrust.family.pojo;
 
 public final class Constants {
+	private Constants(){}
+
 	// Messages
 	public static final String PERSON_NOT_FOUND = "PERSON_NOT_FOUND";
 	public static final String CHILD_ADDITION_SUCCEEDED = "CHILD_ADDITION_SUCCEEDED";
